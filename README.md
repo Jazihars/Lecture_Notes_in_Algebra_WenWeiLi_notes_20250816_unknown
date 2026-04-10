@@ -15,16 +15,22 @@
 # 往本地clone下来的本地GitHub仓库中放入新文件之前，按顺序运行以下命令：
 
 git fetch
+# 必要时用git fetch origin，含义是：不管当前分支是谁、不管默认规则如何，这次就从名为 origin 的那个远程仓库中抓取远程仓库的内容
 git pull --rebase
 
 # 如有报错：
-# git stash
+# git stash push -u -m "before pull --rebase"
 # git pull --rebase
 # git stash pop
 
 git status
 git diff
 git diff --cached
+git status -sb
+# 如果运行git status -sb之后输出为## main...origin/main，则说明：
+# 1.我当前所在的分支是 main
+# 2.这个本地分支正在跟踪远程分支 origin/main
+# 3.我当前本地分支 main 和 origin/main 现在是对齐的。我的本地没有比远程多出来、还没 push 的提交，我的远程也没有比本地多出来、还没 pull 的提交
 
 # 如果以上命令都没有报错，也没有需要处理的状况，现在开始往本地clone下来的GitHub仓库中放入新文件
 
@@ -34,4 +40,4 @@ git push
 
 ```
 
-目前（2026.1.22）暂定执行此安全流程，以后仍有可能继续修改完善
+目前（2026.4.10）暂定执行此安全流程，以后仍有可能继续修改完善
